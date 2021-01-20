@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <ToggleButton
-            android:id="@+id/toggleButton4"
+            android:id="@+id/beginner_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -67,6 +67,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
+            android:onClick="onBeginnerlicked"
             android:background="@drawable/swoosh_toggle"
             android:fontFamily="@font/montserrat"
             android:text="@string/beginner"
@@ -75,7 +76,7 @@
             android:textOn="@string/beginner" />
 
         <ToggleButton
-            android:id="@+id/toggleButton5"
+            android:id="@+id/baller_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -83,6 +84,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_weight="1"
+            android:onClick="onBallerlicked"
             android:background="@drawable/swoosh_toggle"
             android:fontFamily="@font/montserrat"
             android:text="@string/baller"
