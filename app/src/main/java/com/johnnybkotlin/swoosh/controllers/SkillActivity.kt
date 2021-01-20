@@ -6,37 +6,48 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.johnnybkotlin.swoosh.R
+import com.johnnybkotlin.swoosh.models.Player
 import kotlinx.android.synthetic.main.activity_skill.*
 
 class SkillActivity : BaseActivity() {
 
-    var league = "";
-    var skills = "";
+    var player = Player("","")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
 
-        league = intent.getStringExtra("League").toString();
+        player = intent.getParcelableExtra("Player")!!;
 
     }
 
     fun onBeginnerlicked(view: View) {
-        skills = "beginner"
-        baller_btn.isChecked = false
+
+        if(beginner_btn.isChecked) {
+            player.skill = "beginner"
+            baller_btn.isChecked = false
+        }else{
+            player.skill = ""
+            baller_btn.isChecked = false
+        }
         //Toast.makeText(this," I'm a Beginner in the ${league} league",Toast.LENGTH_LONG).show()
     }
     fun onBallerlicked(view: View) {
-        skills = "baller"
-        beginner_btn.isChecked = false
+
+        if(baller_btn.isChecked) {
+            player.skill = "baller"
+            beginner_btn.isChecked = false
+        }else{
+            player.skill = ""
+            beginner_btn.isChecked = false
+        }
         //Toast.makeText(this," I'm a Baller in the ${league} league",Toast.LENGTH_LONG).show()
     }
 
     fun onskillFinishClicked(view: View) {
 
-        if(skills != "") {
+        if(player.skill != "") {
             val intent = Intent(this@SkillActivity, FinishActivity::class.java);
-            intent.putExtra("League",league)
-            intent.putExtra("skill",skills)
+            intent.putExtra("Player",player);
             startActivity(intent);
         }else{
             Toast.makeText(this," Please select a skill level..",Toast.LENGTH_LONG).show()

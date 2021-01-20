@@ -3,20 +3,20 @@ package com.johnnybkotlin.swoosh.controllers
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.johnnybkotlin.swoosh.R
+import com.johnnybkotlin.swoosh.models.Player
 import kotlinx.android.synthetic.main.activity_finish.*
 
 class FinishActivity : AppCompatActivity() {
 
-    var league = "";
-    var skills = "";
+    var player = Player("","");
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finish)
 
-        league = intent.getStringExtra("League").toString()
-        skills = intent.getStringExtra("skill").toString()
+        player = intent.getParcelableExtra("Player")!!;
 
 
-        selection_textview.setText("Looking for a ${league} ${skills} league around you...")
+        selection_textview.setText("Looking for a ${player.league} ${player.skill} league around you...")
     }
 }

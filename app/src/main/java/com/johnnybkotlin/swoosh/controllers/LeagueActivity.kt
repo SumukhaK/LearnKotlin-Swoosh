@@ -6,21 +6,21 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.johnnybkotlin.swoosh.R
+import com.johnnybkotlin.swoosh.models.Player
 import kotlinx.android.synthetic.main.activity_league.*
 
 class LeagueActivity : BaseActivity() {
 
-    var selectedLeague = ""
-
+    val player = Player("","")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_league)
 
 
         league_next_btn.setOnClickListener {
-            if(selectedLeague != "") {
+            if(player.league != "") {
                 val skilledIntent = Intent(this@LeagueActivity,SkillActivity::class.java);
-                skilledIntent.putExtra("League",selectedLeague);
+                skilledIntent.putExtra("Player",player);
                 startActivity(skilledIntent)
             }else{
                 Toast.makeText(this@LeagueActivity,"Please select a League",Toast.LENGTH_LONG).show()
@@ -30,23 +30,40 @@ class LeagueActivity : BaseActivity() {
 
     fun onCoedClicked(view: View) {
 
-        mens_league_btn.isChecked = false
-        womens_league_btn.isChecked = false
-        selectedLeague = "Co-ed"
+        if(coed_league_btn.isChecked) {
+            mens_league_btn.isChecked = false
+            womens_league_btn.isChecked = false
+            player.league = "Co-ed"
+        }else{
+            mens_league_btn.isChecked = false
+            womens_league_btn.isChecked = false
+            player.league = ""
+        }
 
     }
     fun onWomensClicked(view: View) {
 
-        mens_league_btn.isChecked = false
-        coed_league_btn.isChecked = false
-        selectedLeague = "Women's"
+        if(womens_league_btn.isChecked) {
+            mens_league_btn.isChecked = false
+            coed_league_btn.isChecked = false
+            player.league = "Women's"
+        }else{
+            mens_league_btn.isChecked = false
+            coed_league_btn.isChecked = false
+            player.league = ""
 
+        }
     }
     fun onMensClicked(view: View) {
 
-        womens_league_btn.isChecked = false
-        coed_league_btn.isChecked = false
-        selectedLeague = "Men's"
-
+        if(mens_league_btn.isChecked) {
+            womens_league_btn.isChecked = false
+            coed_league_btn.isChecked = false
+            player.league = "Men's"
+        }else{
+            womens_league_btn.isChecked = false
+            coed_league_btn.isChecked = false
+            player.league = ""
+        }
     }
 }
