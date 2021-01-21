@@ -19,4 +19,16 @@ class FinishActivity : AppCompatActivity() {
 
         selection_textview.setText("Looking for a ${player.league} ${player.skill} league around you...")
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("Player",player)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if(savedInstanceState != null){
+            player = savedInstanceState.getParcelable("Player")!!
+        }
+    }
 }

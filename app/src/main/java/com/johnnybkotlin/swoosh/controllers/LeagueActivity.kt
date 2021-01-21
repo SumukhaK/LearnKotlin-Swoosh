@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_league.*
 
 class LeagueActivity : BaseActivity() {
 
-    val player = Player("","")
+    var player = Player("","")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_league)
@@ -25,6 +25,18 @@ class LeagueActivity : BaseActivity() {
             }else{
                 Toast.makeText(this@LeagueActivity,"Please select a League",Toast.LENGTH_LONG).show()
             }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("Player",player)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if(savedInstanceState != null){
+            player = savedInstanceState.getParcelable("Player")!!
         }
     }
 

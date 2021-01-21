@@ -18,6 +18,21 @@ class SkillActivity : BaseActivity() {
 
         player = intent.getParcelableExtra("Player")!!;
 
+
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("Player",player)
+    }
+
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if(savedInstanceState != null){
+            player = savedInstanceState.getParcelable("Player")!!
+        }
     }
 
     fun onBeginnerlicked(view: View) {
